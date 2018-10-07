@@ -4,7 +4,7 @@
 
       Modified by @cwwilson08 (Chris Wilson) to work with the Insteonlocal driver for Homebridge by Scott Kuester
 
-    *  Last Update 09/17/2018
+    *  Last Update 10/06/2018
     *
     *  V1.3.1 - Removed ability to set refresh in driver    @cwwilson 10/06/18
     *  V1.3.0 - User definable refresh and smooth dimming    @cwwilson 09/17/2018
