@@ -18,7 +18,13 @@
         capability "Switch Level"
     	}
         
-     
+        def rates = [:]
+    	rates << ["10" : "Refresh every 10 seconds"]
+    	rates << ["15" : "Refresh every 15 seconds"]
+    	rates << ["20" : "Refresh every 20 seconds"]
+    	rates << ["25" : "Refresh every 25 seconds"]
+    	rates << ["30" : "Refresh every 30 seconds"]
+        rates << ["None" : "No Refresh set"]
         
         preferences {
     		input(name: "deviceIP", type: "string", title:"Express Device IP Address", description: "Enter IP Address of your Express server", required: true, displayDuringSetup: true)
@@ -26,6 +32,7 @@
     		input(name: "hubIP", type: "string", title:"HUB/PLM IP Address", description: "Enter IP Address of your HUB/PLM", required: true, displayDuringSetup: true)
     		input(name: "hubPort", type: "string", title:"HUB/PLM Device Port", description: "Enter Port of your HUB/PLM (defaults to 80)", defaultValue: "80", required: false, displayDuringSetup: true)
             input(name: "deviceID", type: "string", title:"Device ID", description: "Device ID here", displayDuringSetup: true)
+            input(name: "refreshRate", type: "enum", title: "Refresh Rate", options: rates, description: "Select Refresh Rate", required: false)
             input("username", "text", title: "Username", description: "The hub username (found in app)")
             input("password", "text", title: "Password", description: "The hub password (found in app)")
            
@@ -36,8 +43,39 @@
     }
 
     def updated() {
+        unschedule()
+        //schedule("0/10 * * * * ? *", refresh)
+        switch(refreshRate) {
+    		case "10":
+    			schedule("0/10 * * * * ? *", refresh)
+    			log.debug "refreshing in 10 seconds"
+    			break
+    		case "15":
+    			schedule("0/15 * * * * ? *", refresh)
+    			log.debug "Refresh set every 15 seconds"
+    			break
+    		case "20":
+    			schedule("0/20 * * * * ? *", refresh)
+            	log.debug "Refresh set every 20 seconds"
+                break
+            case "25":
+    			schedule("0/25 * * * * ? *", refresh)
+    			log.debug "Refresh set every 25 seconds"
+    			break
+    		case "30":
+    			schedule("0/30 * * * * ? *", refresh)
+    			log.debug "Refresh set every 30 seconds"
+    			break
+            case "None":
+    			log.debug "no refresh scheduled"
+            	unschedule()
+    			
+    			break
+    		default:
+    			schedule("0/30 * * * * ? *", refresh)
+    			
+    	}
     }
-
 
    
     def parse(String description) {
