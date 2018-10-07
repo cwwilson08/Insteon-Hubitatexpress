@@ -6,7 +6,8 @@
 
     *  Last Update 09/17/2018
     *
-	*  V1.3.0 - User definable refresh and smooth dimming    @cwwilson 09/17/2018
+    *  V1.3.1 - Removed ability to set refresh in driver    @cwwilson 10/06/18
+    *  V1.3.0 - User definable refresh and smooth dimming    @cwwilson 09/17/2018
     *  V1.2.0 - Added dim level capability    @cwwilson08 09/01/2018 
     *  V1.1.0 - Changed method to enforce GET    @cwwilson08 08/28/2018
     *  V1.0.0 - First build    @cwwilson08 08/27/2018
